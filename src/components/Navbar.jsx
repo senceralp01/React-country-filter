@@ -1,4 +1,5 @@
 import React from "react";
+import { images } from "../constants";
 
 const Navbar = () => {
   return (
@@ -6,6 +7,9 @@ const Navbar = () => {
       <div className="container-fluid">
         <a className="navbar-brand text-white" href="#">
           Country Finder
+        </a>
+        <a className="navbar-brand text-white" href="#">
+          <img src={images.logo} alt="logo" style={{ width: "100px" }} />
         </a>
       </div>
     </nav>
