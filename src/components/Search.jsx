@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import { FiRefreshCcw } from 'react-icons/fi';
 
 const Search = ({ setCapital, setKeyword, setData }) => {
   return (
@@ -32,7 +33,7 @@ const Search = ({ setCapital, setKeyword, setData }) => {
               .then((res) => setData(res.data));
           }}
         >
-          Clear
+          <FiRefreshCcw />
         </button>
       </div>
     </div>
