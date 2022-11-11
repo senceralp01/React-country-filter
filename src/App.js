@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Table from "./Table";
-import Navbar from "./Navbar";
-import Search from "./Search";
+
+import Navbar from "./components/Navbar";
+import Search from "./components/Search";
+import Table from "./components/Table";
 
 function App() {
   const [data, setData] = useState([]);
