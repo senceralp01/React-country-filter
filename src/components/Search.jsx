@@ -2,7 +2,7 @@ import React from 'react';
 
 const Search = ({ setCapital, setKeyword, setToggle }) => {
   return (
-    <div className="container mt-4">
+    <div className="container mt-4 mb-2">
     <div className="row">
       <div className="col-md mb-2">
         <input

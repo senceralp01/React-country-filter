@@ -2,7 +2,7 @@ import React from "react";
 
 const Table = ({ data }) => {
   return (
-    <div className="table-responsive-sm m-3">
+    <div className="table-responsive-sm">
       <table className="table table-dark table-hover table-striped table-bordered">
         <thead>
           <tr>
