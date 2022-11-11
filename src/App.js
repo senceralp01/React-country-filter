@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Navbar from "./components/Navbar";
 import Table from "./components/Table";
+import Search from "./components/Search";
 
 function App() {
   const [data, setData] = useState([]);
@@ -46,35 +47,11 @@ function App() {
   return (
     <div>
       <Navbar />
-
-      <div className="container">
-        <div className="row">
-          <div className="col-md input-group mt-3 mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Filter by capital"
-              onChange={(e) => {
-                setCapital(e.target.value.toLowerCase());
-                setToggle(true);
-              }}
-            />
-          </div>
-          <div className="col-md input-group mt-3 mb-3">
-            <input
-              id="content"
-              type="text"
-              className="form-control"
-              placeholder="Filter by other contents"
-              onChange={(e) => {
-                setKeyword(e.target.value.toLowerCase());
-                setToggle(false);
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
+      <Search
+        setCapital={setCapital}
+        setKeyword={setKeyword}
+        setToggle={setToggle}
+      />
       <Table data={toggle ? data : contentData} />
     </div>
   );
