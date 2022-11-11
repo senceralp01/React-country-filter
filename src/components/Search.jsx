@@ -2,9 +2,9 @@ import React from 'react';
 
 const Search = ({ setCapital, setKeyword, setToggle }) => {
   return (
-    <div className="container mt-3">
+    <div className="container mt-4">
     <div className="row">
-      <div className="col-md mb-2 input-group">
+      <div className="col-md mb-2">
         <input
           type="text"
           className="form-control"
@@ -15,7 +15,7 @@ const Search = ({ setCapital, setKeyword, setToggle }) => {
           }}
         />
       </div>
-      <div className="col-md mb-2 input-group">
+      <div className="col-md mb-2">
         <input
           id="content"
           type="text"
