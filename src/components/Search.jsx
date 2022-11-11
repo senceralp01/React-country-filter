@@ -8,7 +8,7 @@ const Search = ({ setCapital, setKeyword, setToggle }) => {
         <input
           type="text"
           className="form-control"
-          placeholder="Filter by capital"
+          placeholder="Filter with capital.."
           onChange={(e) => {
             setCapital(e.target.value.toLowerCase());
             setToggle(true);
@@ -20,7 +20,7 @@ const Search = ({ setCapital, setKeyword, setToggle }) => {
           id="content"
           type="text"
           className="form-control"
-          placeholder="Filter by other contents"
+          placeholder="Filter with other contents.."
           onChange={(e) => {
             setKeyword(e.target.value.toLowerCase());
             setToggle(false);

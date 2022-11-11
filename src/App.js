@@ -4,12 +4,15 @@ import axios from "axios";
 import Navbar from "./components/Navbar";
 import Table from "./components/Table";
 import Search from "./components/Search";
+import Loading from "./components/Loading";
 
 function App() {
   const [data, setData] = useState([]);
   const [capital, setCapital] = useState("");
   const [toggle, setToggle] = useState(true);
   const [contentData, setContentData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [toggleTable, setToggleTable] = useState(false);
 
   const contents = ["name", "capital", "region"];
   const [keyword, setKeyword] = useState("");
@@ -18,6 +21,8 @@ function App() {
     axios.get(`https://restcountries.com/v2/all`).then((res) => {
       setData(res.data);
       setContentData(res.data);
+      setLoading(false);
+      setToggleTable(true);
     });
   }, []);
 
@@ -52,7 +57,8 @@ function App() {
         setKeyword={setKeyword}
         setToggle={setToggle}
       />
-      <Table data={toggle ? data : contentData} />
+      {loading && <Loading />}
+      {toggleTable && <Table data={toggle ? data : contentData} /> }
     </div>
   );
 }
