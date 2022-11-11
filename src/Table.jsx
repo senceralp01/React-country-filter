@@ -21,7 +21,7 @@ const Table = ({ data }) => {
               <img
                 src={country.flags.svg}
                 alt={country.name}
-                style={{ width: "50px" }}
+                style={{ width: "50px", height: "30px" }}
                 className="img-fluid"
               />
             </td>
