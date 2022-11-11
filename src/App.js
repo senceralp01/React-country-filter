@@ -2,20 +2,22 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Navbar from "./components/Navbar";
-import Search from "./components/Search";
 import Table from "./components/Table";
 
 function App() {
   const [data, setData] = useState([]);
   const [capital, setCapital] = useState("");
+  const [toggle, setToggle] = useState(true);
+  const [contentData, setContentData] = useState([]);
 
   const contents = ["name", "capital", "region"];
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`https://restcountries.com/v2/all`)
-      .then((res) => setData(res.data));
+    axios.get(`https://restcountries.com/v2/all`).then((res) => {
+      setData(res.data);
+      setContentData(res.data);
+    });
   }, []);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ function App() {
   }, [capital]);
 
   useEffect(() => {
-    setData(
+    setContentData(
       data.filter((country) =>
         contents.some(
           (content) =>
@@ -44,12 +46,36 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Search
-        setCapital={setCapital}
-        setKeyword={setKeyword}
-        setData={setData}
-      />
-      <Table data={data} />
+
+      <div className="container">
+        <div className="row">
+          <div className="col-md input-group mt-3 mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Filter by capital"
+              onChange={(e) => {
+                setCapital(e.target.value.toLowerCase());
+                setToggle(true);
+              }}
+            />
+          </div>
+          <div className="col-md input-group mt-3 mb-3">
+            <input
+              id="content"
+              type="text"
+              className="form-control"
+              placeholder="Filter by other contents"
+              onChange={(e) => {
+                setKeyword(e.target.value.toLowerCase());
+                setToggle(false);
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <Table data={toggle ? data : contentData} />
     </div>
   );
 }
