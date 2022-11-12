@@ -24,7 +24,7 @@ function App() {
   // Info message:
   const [info, setInfo] = useState("Loading...");
 
-  const contents = ["name", "capital", "region"];
+  const contents = ["name", "capital", "region", "nativeName", "numericCode"];
 
   useEffect(() => {
     axios.get(`https://restcountries.com/v2/all`).then((res) => {
