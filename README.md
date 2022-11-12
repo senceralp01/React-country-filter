@@ -11,6 +11,8 @@ Http requests: Axios
 
 Responsive design has been developed with Bootstrap 5.2
 
+API service from which country information is requested: https://restcountries.com/v2/all
+
 File&folder structure of the project has been built taking grouping components, grouping assets and their outs which are used for export them into account.
 
 
