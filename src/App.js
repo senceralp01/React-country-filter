@@ -37,9 +37,10 @@ function App() {
 
   useEffect(() => {
     if (capital === "") {
-      axios
-        .get(`https://restcountries.com/v2/all`)
-        .then((res) => setData(res.data));
+      axios.get(`https://restcountries.com/v2/all`).then((res) => {
+        setToggleTable(true);
+        setData(res.data);
+      });
     } else {
       axios
         .get(`https://restcountries.com/v2/capital/${capital}`)

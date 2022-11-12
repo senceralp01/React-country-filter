@@ -23,7 +23,7 @@ const Table = ({ data }) => {
               <td>
                 <img
                   src={country.flags.svg}
-                  alt={country.name}
+                  alt={`${country.name}-flag`}
                   style={{ width: "50px", height: "auto" }}
                 />
               </td>
