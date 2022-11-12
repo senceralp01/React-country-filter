@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Table from "./components/Table";
 import Search from "./components/Search";
 import Loading from "./components/Loading";
-import Error from "./components/Error";
+import Info from "./components/Info";
 
 function App() {
   // Datas:
@@ -58,13 +58,22 @@ function App() {
   useEffect(() => {
     setContentData(
       data.filter((country) =>
-        contents.some(
-          (content) =>
-            country[content] && country[content].toLowerCase().includes(keyword)
-        )
+        contents.some((content) => {
+          setToggleTable(true);
+          if (country[content]) {
+            return country[content].toLowerCase().includes(keyword);
+          }
+        })
       )
     );
   }, [keyword]);
+
+  useEffect(() => {
+    if (keyword !== "" && !contentData.length) {
+      setInfo("Not found in the content");
+      setToggleTable(false);
+    }
+  }, [contentData]);
 
   return (
     <div>
@@ -76,7 +85,7 @@ function App() {
       />
       {loading && <Loading />}
       {toggleTable && <Table data={toggle ? data : contentData} />}
-      {!toggleTable && <Error info={info} />}
+      {!toggleTable && <Info info={info} />}
     </div>
   );
 }
