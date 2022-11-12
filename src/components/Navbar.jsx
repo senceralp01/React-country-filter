@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className="navbar bg-dark bg-gradient">
       <div className="container-fluid">
         <a className="navbar-brand text-white-50" href="#">
-          c<GiWorld />untry finder 
+          c<GiWorld />untry filter 
         </a>
         <a className="navbar-brand text-white" href="#">
           <img src={images.logo} alt="logo" style={{ width: "100px" }} />

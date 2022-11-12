@@ -5,17 +5,26 @@ import Navbar from "./components/Navbar";
 import Table from "./components/Table";
 import Search from "./components/Search";
 import Loading from "./components/Loading";
+import Error from "./components/Error";
 
 function App() {
+  // Datas:
   const [data, setData] = useState([]);
-  const [capital, setCapital] = useState("");
-  const [toggle, setToggle] = useState(true);
   const [contentData, setContentData] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  // Toggles:
+  const [toggle, setToggle] = useState(true);
   const [toggleTable, setToggleTable] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // Keywords:
+  const [capital, setCapital] = useState("");
+  const [keyword, setKeyword] = useState("");
+
+  // Info message:
+  const [info, setInfo] = useState("Loading...");
 
   const contents = ["name", "capital", "region"];
-  const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
     axios.get(`https://restcountries.com/v2/all`).then((res) => {
@@ -34,7 +43,15 @@ function App() {
     } else {
       axios
         .get(`https://restcountries.com/v2/capital/${capital}`)
-        .then((res) => setData(res.data));
+        .then((res) => {
+          setToggleTable(true);
+          setData(res.data);
+        })
+        .catch((error) => {
+          setData([]);
+          setToggleTable(false);
+          setInfo(error.response.data.message);
+        });
     }
   }, [capital]);
 
@@ -58,7 +75,8 @@ function App() {
         setToggle={setToggle}
       />
       {loading && <Loading />}
-      {toggleTable && <Table data={toggle ? data : contentData} /> }
+      {toggleTable && <Table data={toggle ? data : contentData} />}
+      {!toggleTable && <Error info={info} />}
     </div>
   );
 }
